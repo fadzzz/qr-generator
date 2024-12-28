@@ -78,7 +78,8 @@ export default function QRGenerator() {
     setTimeout(() => setSuccessMessage(''), 3000);
   };
 
-  const sendVerificationCode = async () => {
+
+const sendVerificationCode = async () => {
     if (!phoneNumber) {
       setError('Please enter a phone number');
       return;
@@ -163,7 +164,7 @@ export default function QRGenerator() {
     }
   };
 
-  return (
+return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
       <div className="w-full max-w-md">
         <div className="flex justify-between mb-8 relative">
@@ -316,3 +317,19 @@ export default function QRGenerator() {
                     <button
                       onClick={() => window.open(qrCode, '_blank')}
                       className="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      Download QR Code
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {error && <ErrorMessage message={error} />}
+            {successMessage && <SuccessMessage message={successMessage} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
