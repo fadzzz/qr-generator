@@ -5,7 +5,7 @@ import { AlertCircle } from 'lucide-react';
 
 export default function QRGenerator() {
   const [url, setUrl] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const [error, setError] = useState('');
 
   const generateQR = async () => {
