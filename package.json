@@ -11,8 +11,7 @@
     "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "lucide-react": "0.263.1",
-    "@/components/ui": "latest"
+    "lucide-react": "0.263.1"
   },
   "devDependencies": {
     "typescript": "^5",
