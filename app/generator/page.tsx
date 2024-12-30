@@ -203,8 +203,11 @@ return (
 
         <div className="bg-white rounded-xl shadow-xl overflow-hidden">
           <div className="p-8">
+            <p className="text-gray-600 mb-4 text-center">
+              We verify phone numbers to prevent spam and protect our users from automated attacks. Your number is encrypted and never shared!
+            </p>
             <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-              {step === 'phone' && 'Verify Your Phone'}
+              {step === 'phone' && 'Verify Your Number'}
               {step === 'verify' && 'Enter Verification Code'}
               {step === 'generator' && 'Generate QR Code'}
             </h1>
