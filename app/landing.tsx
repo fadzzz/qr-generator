@@ -33,7 +33,7 @@ export default function LandingPage() {
               <p className="text-gray-600 mb-4">{service.description}</p>
               {service.title === "Forever QR Codes" && (
                 <button 
-                  onClick={() => window.location.href = '/'}
+                  onClick={() => window.location.href = '/generator'}
                   className="inline-block bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Get Started
