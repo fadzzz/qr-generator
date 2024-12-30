@@ -25,7 +25,8 @@ export default function LandingPage() {
           Unlike subscription services, our QR codes never expire. 
           One-time payment, lifetime access. Start generating now!
         </p>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 mb-12">
+        <div className="flex justify-center items-center px-4 mb-12">
+          <div className="w-full max-w-md">
           {services.map((service) => (
             <div key={service.title} className="relative bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:border-blue-300 transition-all duration-300 text-center">
               <div className="absolute -top-4 -right-4 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
