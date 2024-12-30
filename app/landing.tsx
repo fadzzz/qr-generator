@@ -1,6 +1,7 @@
+'use client';
+
 export const runtime = 'edge';
 
-'use client';
 import { QrCode, CreditCard, Globe } from 'lucide-react';
 
 const services = [
