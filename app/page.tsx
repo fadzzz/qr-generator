@@ -32,14 +32,14 @@ const countries = [
   { code: '+967', name: 'Yemen', flag: '🇾🇪' }
 ].sort((a, b) => a.name.localeCompare(b.name));
 
-const SuccessMessage = ({ message }) => (
+const SuccessMessage = ({ message }: { message: string }) => (
   <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded-lg flex items-start space-x-3">
     <Check className="h-5 w-5 text-green-500 mt-0.5" />
     <p className="text-green-700">{message}</p>
   </div>
 );
 
-const ErrorMessage = ({ message }) => (
+const ErrorMessage = ({ message }: { message: string }) => (
   <div className="mt-4 bg-red-50 border-l-4 border-red-500 p-4 rounded-lg flex items-start space-x-3">
     <AlertCircle className="h-5 w-5 text-red-500 mt-0.5" />
     <p className="text-red-700">{message}</p>
