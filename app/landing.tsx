@@ -1,7 +1,5 @@
 'use client';
-
 import { QrCode, CreditCard, Globe } from 'lucide-react';
-import Link from 'next/link';
 
 const services = [
   {
@@ -9,18 +7,6 @@ const services = [
     title: "Forever QR Codes",
     price: "2",
     description: "Generate unlimited QR codes that never expire. Perfect for business cards, menus, and marketing materials."
-  },
-  {
-    icon: QrCode,
-    title: "URL Shortener",
-    price: "3",
-    description: "Create branded short links that never expire. Track clicks and manage all your links in one place."
-  },
-  {
-    icon: Globe,
-    title: "Bio Link Page",
-    price: "5",
-    description: "Create a beautiful landing page for all your important links. Perfect for social media profiles."
   }
 ];
 
@@ -36,7 +22,6 @@ export default function LandingPage() {
           Unlike subscription services, our QR codes never expire. 
           One-time payment, lifetime access. Start generating now!
         </p>
-
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 mb-12">
           {services.map((service) => (
             <div key={service.title} className="relative bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:border-blue-300 transition-all duration-300">
@@ -47,17 +32,16 @@ export default function LandingPage() {
               <h3 className="text-xl font-bold text-gray-800 mb-2">{service.title}</h3>
               <p className="text-gray-600 mb-4">{service.description}</p>
               {service.title === "Forever QR Codes" && (
-                <Link 
-                  href="/qr-generator"
+                <button 
+                  onClick={() => window.location.href = '/'}
                   className="inline-block bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Get Started
-                </Link>
+                </button>
               )}
             </div>
           ))}
         </div>
-
         <div className="max-w-4xl mx-auto mt-16 px-4">
           <h3 className="text-2xl font-bold text-gray-800 mb-8">Why Choose Our Service?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
