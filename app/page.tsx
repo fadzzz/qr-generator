@@ -86,10 +86,10 @@ export default function QRGenerator() {
     return `${selectedCountry.code}${cleaned}`;
   };
 
-  const showSuccessFor = (message) => {
-    setSuccessMessage(message);
-    setTimeout(() => setSuccessMessage(''), 3000);
-  };
+  const showSuccessFor = (message: string) => {
+  setSuccessMessage(message);
+  setTimeout(() => setSuccessMessage(''), 3000);
+};
 
 
 const sendVerificationCode = async () => {
