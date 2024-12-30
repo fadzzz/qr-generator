@@ -64,7 +64,7 @@ export default function QRGenerator() {
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const formatPhoneNumber = (value) => {
+  const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '');
     if (selectedCountry.code === '+1') {
       if (cleaned.length <= 3) return cleaned;
