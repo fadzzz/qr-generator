@@ -5,6 +5,13 @@ import React from 'react';
 import { useState } from 'react';
 import { Phone, Lock, Loader2, AlertCircle, Check, ArrowRight, ChevronDown } from 'lucide-react';
 
+// Add this interface after your imports and before the countries array
+interface Country {
+  code: string;
+  name: string;
+  flag: string;
+}
+
 const countries = [
   { code: '+93', name: 'Afghanistan', flag: '🇦🇫' },
   { code: '+973', name: 'Bahrain', flag: '🇧🇭' },
@@ -54,7 +61,7 @@ const ErrorMessage: React.FC<MessageProps> = ({ message }) => (
 
 export default function QRGenerator() {
   const [step, setStep] = useState('phone');
-  const [selectedCountry, setSelectedCountry] = useState(countries.find(c => c.code === '+1'));
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries.find(c => c.code === '+1') || countries[0]);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [url, setUrl] = useState('');
