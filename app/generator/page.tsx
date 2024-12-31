@@ -211,8 +211,8 @@ const PayPalButton = () => {
     return <div id="paypal-button-container" />;
   };
 
- // Return statement 
 
+  // Return statement 
   
 return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
@@ -351,11 +351,6 @@ return (
 
 
 
-
-
-
-            
-            
             {step === 'generator' && (
   <div className="space-y-4">
     <input
@@ -411,33 +406,20 @@ return (
       </div>
     )}
 
-
-
-
-
-    
-                       
-            {qrCode && (
-                  <div className="mt-6 flex flex-col items-center space-y-4">
-                    <img
-                      src={qrCode}
-                      alt="Generated QR Code"
-                      className="w-48 h-48 border rounded-lg shadow-lg"
-                    />
-                    <button
-                      onClick={() => window.open(qrCode, '_blank')}
-                      className="text-blue-600 hover:text-blue-700 font-medium"
-                    >
-                      Download QR Code
-                    </button>
-                  </div>
-                )}
-
-            {error && <ErrorMessage message={error} />}
-            {successMessage && <SuccessMessage message={successMessage} />}
-          </div>
-        </div>
+    {qrCode && (
+      <div className="mt-6 flex flex-col items-center space-y-4">
+        <img
+          src={qrCode}
+          alt="Generated QR Code"
+          className="w-48 h-48 border rounded-lg shadow-lg"
+        />
+        <button
+          onClick={() => window.open(qrCode, '_blank')}
+          className="text-blue-600 hover:text-blue-700 font-medium"
+        >
+          Download QR Code
+        </button>
       </div>
-    </div>
-  );
-}
+    )}
+  </div>
+)}
