@@ -364,7 +364,10 @@ return (
                     'Generate QR Code'
                   )}
                 </button>
-
+                )}
+              </div>
+            )}
+            
                 {qrCode && (
                   <div className="mt-6 flex flex-col items-center space-y-4">
                     <img
@@ -379,9 +382,7 @@ return (
                       Download QR Code
                     </button>
                   </div>
-                )}
-              </div>
-            )}
+
 
             {error && <ErrorMessage message={error} />}
             {successMessage && <SuccessMessage message={successMessage} />}
