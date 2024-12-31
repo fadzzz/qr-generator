@@ -344,7 +344,7 @@ return (
                   )}
                 </button>
               </div>
-            )}
+            );
 
 {step === 'generator' && (
  <div className="space-y-4">
@@ -401,6 +401,7 @@ return (
      </div>
    )}
 
+   
    {qrCode && (
      <div className="mt-6 flex flex-col items-center space-y-4">
        <img
