@@ -6,6 +6,9 @@ import React from 'react';
 
 import { useState } from 'react';
 import { Phone, Lock, Loader2, AlertCircle, Check, ArrowRight, ChevronDown } from 'lucide-react';
+
+import { useEffect } from 'react';
+
 declare const paypal: any;
 
 interface Country {
