@@ -189,7 +189,7 @@ const sendVerificationCode = async () => {
 const PayPalButton = () => {
     useEffect(() => {
       if (window.paypal) {
-        paypal.Buttons({
+        window.paypal.Buttons({
           createOrder: (data: any, actions: any) => {
             return actions.order.create({
               purchase_units: [{
