@@ -6,8 +6,8 @@ import React from 'react';
 
 import { useState } from 'react';
 import { Phone, Lock, Loader2, AlertCircle, Check, ArrowRight, ChevronDown } from 'lucide-react';
+declare const paypal: any;
 
-// Add this interface after your imports and before the countries array
 interface Country {
   code: string;
   name: string;
@@ -180,6 +180,33 @@ const sendVerificationCode = async () => {
     }
   };
 
+
+const PayPalButton = () => {
+    useEffect(() => {
+      if (window.paypal) {
+        paypal.Buttons({
+          createOrder: (data: any, actions: any) => {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: '2.00'
+                }
+              }]
+            });
+          },
+          onApprove: async (data: any, actions: any) => {
+            await actions.order.capture();
+            setPaymentCompleted(true);
+            showSuccessFor('Payment successful! You can now generate your QR code.');
+          }
+        }).render('#paypal-button-container');
+      }
+    }, []);
+
+    return <div id="paypal-button-container" />;
+  };
+
+  
 return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
       <div className="w-full max-w-md">
@@ -306,19 +333,28 @@ return (
             )}
 
             {step === 'generator' && (
-              <div className="space-y-4">
-                <input
-                  type="url"
-                  placeholder="Enter URL (e.g., https://example.com)"
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                />
-                <button
-                  onClick={generateQR}
-                  disabled={loading}
-                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
-                >
+  <div className="space-y-4">
+    <input
+      type="url"
+      placeholder="Enter URL (e.g., https://example.com)"
+      value={url}
+      onChange={(e) => setUrl(e.target.value)}
+      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+    />
+    
+    {!paymentCompleted ? (
+      <div className="border-t border-gray-200 pt-4">
+        <p className="text-gray-600 mb-4 text-center">
+          One-time payment of $2 for lifetime QR code access
+        </p>
+        <PayPalButton />
+      </div>
+    ) : (
+      <button
+        onClick={generateQR}
+        disabled={loading}
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
+      >
                   {loading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
                   ) : (
