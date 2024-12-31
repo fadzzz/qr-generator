@@ -346,77 +346,75 @@ return (
               </div>
             )}
 
+{step === 'generator' && (
+ <div className="space-y-4">
+   <input
+     type="url"
+     placeholder="https://example.com"
+     value={url}
+     onChange={(e) => {
+       const val = e.target.value;
+       if (!val.startsWith('http://') && !val.startsWith('https://')) {
+         setUrl('https://' + val);
+       } else {
+         setUrl(val);
+       }
+     }}
+     disabled={qrCode !== ''}
+     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-gray-100"
+   />
+   
+   {!qrCode ? (
+     !paymentCompleted ? (
+       <div className="border-t border-gray-200 pt-4">
+         <p className="text-gray-600 mb-4 text-center">
+           One-time payment of $5 for lifetime QR code access
+         </p>
+         <div className={url.match(/^https?:\/\//) ? '' : 'opacity-50 pointer-events-none'}>
+           <PayPalButton />
+         </div>
+       </div>
+     ) : (
+       <button
+         onClick={generateQR}
+         disabled={loading || !url.match(/^https?:\/\//)}
+         className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
+       >
+         {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Generate QR Code'}
+       </button>
+     )
+   ) : (
+     <div className="text-center">
+       <p className="text-amber-600 font-medium mb-4">
+         Make sure to download your QR code now! 
+       </p>
+       <button
+         onClick={() => {
+           setUrl('');
+           setQrCode('');
+           setPaymentCompleted(false);
+         }}
+         className="text-blue-600 hover:text-blue-700 underline"
+       >
+         Generate Another QR Code ($5)
+       </button>
+     </div>
+   )}
 
-
-            {step === 'generator' && (
-  <div className="space-y-4">
-    <input
-      type="url"
-      placeholder="https://example.com"
-      value={url}
-      onChange={(e) => {
-        const val = e.target.value;
-        if (!val.startsWith('http://') && !val.startsWith('https://')) {
-          setUrl('https://' + val);
-        } else {
-          setUrl(val);
-        }
-      }}
-      disabled={qrCode !== ''}
-      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-gray-100"
-    />
-    
-    {!qrCode ? (
-      !paymentCompleted ? (
-        <div className="border-t border-gray-200 pt-4">
-          <p className="text-gray-600 mb-4 text-center">
-            One-time payment of $5 for lifetime QR code access
-          </p>
-          <div className={url.match(/^https?:\/\//) ? '' : 'opacity-50 pointer-events-none'}>
-            <PayPalButton />
-          </div>
-        </div>
-      ) : (
-        <button
-          onClick={generateQR}
-          disabled={loading || !url.match(/^https?:\/\//)}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
-        >
-          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Generate QR Code'}
-        </button>
-      )
-    ) : (
-      <div className="text-center">
-        <p className="text-amber-600 font-medium mb-4">
-          Make sure to download your QR code now! 
-        </p>
-        <button
-          onClick={() => {
-            setUrl('');
-            setQrCode('');
-            setPaymentCompleted(false);
-          }}
-          className="text-blue-600 hover:text-blue-700 underline"
-        >
-          Generate Another QR Code ($5)
-        </button>
-      </div>
-    )}
-
-    {qrCode && (
-      <div className="mt-6 flex flex-col items-center space-y-4">
-        <img
-          src={qrCode}
-          alt="Generated QR Code"
-          className="w-48 h-48 border rounded-lg shadow-lg"
-        />
-        <button
-          onClick={() => window.open(qrCode, '_blank')}
-          className="text-blue-600 hover:text-blue-700 font-medium"
-        >
-          Download QR Code
-        </button>
-      </div>
-    )}
-  </div>
+   {qrCode && (
+     <div className="mt-6 flex flex-col items-center space-y-4">
+       <img
+         src={qrCode}
+         alt="Generated QR Code"
+         className="w-48 h-48 border rounded-lg shadow-lg"
+       />
+       <button
+         onClick={() => window.open(qrCode, '_blank')}
+         className="text-blue-600 hover:text-blue-700 font-medium"
+       >
+         Download QR Code
+       </button>
+     </div>
+   )}
+ </div>
 )}
