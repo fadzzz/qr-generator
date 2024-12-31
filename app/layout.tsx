@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=Ab0sCYKHsN6ag8_8PauA21Jh420ezr1kvN6PgcVDuiYpfpBIX2xLDcMkU1xfRRv6n8eDXr5TyGNbiqAi&currency=CAD"></script>
       </head>
       <body>{children}</body>
     </html>
