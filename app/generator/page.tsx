@@ -211,9 +211,6 @@ const PayPalButton = () => {
     return <div id="paypal-button-container" />;
   };
 
-
-  // Return statement 
-  
 return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
       <div className="w-full max-w-md">
