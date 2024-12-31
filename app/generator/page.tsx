@@ -211,6 +211,8 @@ const PayPalButton = () => {
     return <div id="paypal-button-container" />;
   };
 
+ // Return statement 
+
   
 return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
@@ -234,6 +236,7 @@ return (
           ))}
         </div>
 
+        
         <div className="bg-white rounded-xl shadow-xl overflow-hidden">
           <div className="p-8">
             <p className="text-gray-600 mb-4 text-center">
@@ -247,6 +250,10 @@ return (
               {step === 'generator' && 'Generate QR Code'}
             </h1>
 
+
+
+
+            
             {step === 'phone' && (
               <div className="space-y-4">
                 <div className="flex space-x-2">
@@ -309,6 +316,9 @@ return (
               </div>
             )}
 
+
+
+            
             {step === 'verify' && (
               <div className="space-y-4">
                 <div className="relative">
@@ -339,7 +349,12 @@ return (
               </div>
             )}
 
-// Generator section ...
+
+
+
+
+
+            
             
             {step === 'generator' && (
   <div className="space-y-4">
@@ -395,9 +410,13 @@ return (
         </button>
       </div>
     )}
-            
-            // QRCode section...
-            
+
+
+
+
+
+    
+                       
             {qrCode && (
                   <div className="mt-6 flex flex-col items-center space-y-4">
                     <img
