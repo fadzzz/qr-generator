@@ -237,7 +237,9 @@ return (
         <div className="bg-white rounded-xl shadow-xl overflow-hidden">
           <div className="p-8">
             <p className="text-gray-600 mb-4 text-center">
-              We verify phone numbers to prevent spam and protect our users from automated attacks. Your number is encrypted and never shared!
+              {step === 'phone' && 'We verify phone numbers to prevent spam and protect our users from automated attacks. Your number is encrypted and never shared!'}
+              {step === 'verify' && 'We verify phone numbers to prevent spam and protect our users from automated attacks. Your number is encrypted and never shared!'}
+              {step === 'generator' && 'Make sure you enter your URL/Link/Web Address properly with the HTTP or HTTPS at the beginning before proceeding.'}
             </p>
             <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
               {step === 'phone' && 'Verify Your Number'}
@@ -337,40 +339,66 @@ return (
               </div>
             )}
 
+// Generator section ...
+            
             {step === 'generator' && (
   <div className="space-y-4">
     <input
       type="url"
-      placeholder="Enter URL (e.g., https://example.com)"
+      placeholder="https://example.com"
       value={url}
-      onChange={(e) => setUrl(e.target.value)}
-      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+      onChange={(e) => {
+        const val = e.target.value;
+        if (!val.startsWith('http://') && !val.startsWith('https://')) {
+          setUrl('https://' + val);
+        } else {
+          setUrl(val);
+        }
+      }}
+      disabled={qrCode !== ''}
+      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none disabled:bg-gray-100"
     />
     
-    {!paymentCompleted ? (
-      <div className="border-t border-gray-200 pt-4">
-        <p className="text-gray-600 mb-4 text-center">
-          One-time payment of $2 for lifetime QR code access
-        </p>
-        <PayPalButton />
-      </div>
+    {!qrCode ? (
+      !paymentCompleted ? (
+        <div className="border-t border-gray-200 pt-4">
+          <p className="text-gray-600 mb-4 text-center">
+            One-time payment of $5 for lifetime QR code access
+          </p>
+          <div className={url.match(/^https?:\/\//) ? '' : 'opacity-50 pointer-events-none'}>
+            <PayPalButton />
+          </div>
+        </div>
+      ) : (
+        <button
+          onClick={generateQR}
+          disabled={loading || !url.match(/^https?:\/\//)}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
+        >
+          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Generate QR Code'}
+        </button>
+      )
     ) : (
-      <button
-        onClick={generateQR}
-        disabled={loading}
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors flex items-center justify-center space-x-2"
-      >
-                  {loading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    'Generate QR Code'
-                  )}
-                </button>
-                )}
-              </div>
-            )}
+      <div className="text-center">
+        <p className="text-amber-600 font-medium mb-4">
+          Make sure to download your QR code now! 
+        </p>
+        <button
+          onClick={() => {
+            setUrl('');
+            setQrCode('');
+            setPaymentCompleted(false);
+          }}
+          className="text-blue-600 hover:text-blue-700 underline"
+        >
+          Generate Another QR Code ($5)
+        </button>
+      </div>
+    )}
             
-                {qrCode && (
+            // QRCode section...
+            
+            {qrCode && (
                   <div className="mt-6 flex flex-col items-center space-y-4">
                     <img
                       src={qrCode}
