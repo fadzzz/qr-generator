@@ -6,7 +6,12 @@ import { Phone, Lock, Loader2, AlertCircle, Check, ArrowRight, ChevronDown } fro
 import { useEffect } from 'react';
 
 export const runtime = 'edge';
-declare const paypal: any;
+
+declare global {
+  interface Window {
+    paypal: any;
+  }
+}
 
 interface Country {
   code: string;
