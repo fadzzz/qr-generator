@@ -344,7 +344,7 @@ return (
                   )}
                 </button>
               </div>
-            );
+            )}
 
 {step === 'generator' && (
  <div className="space-y-4">
