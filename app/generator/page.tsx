@@ -379,7 +379,7 @@ return (
                       Download QR Code
                     </button>
                   </div>
-
+                )}
 
             {error && <ErrorMessage message={error} />}
             {successMessage && <SuccessMessage message={successMessage} />}
